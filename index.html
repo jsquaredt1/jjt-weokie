@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J. Justin Taylor — WEOKIE FCU Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #1B2E4A;
+  --navy-deep: #0F1E33;
+  --navy-mid: #243d5e;
+  --gold: #B8975A;
+  --gold-light: #D4AF7A;
+  --gold-pale: #f0e6d3;
+  --cream: #F7F4EF;
+  --bone: #EDE8DF;
+  --white: #FFFFFF;
+  --ink: #1A1A2E;
+  --ink-soft: #3D4460;
+  --rust: #C0432A;
+  --rule: #D4C9B8;
+  --nav-h: 64px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy-deep);
+  color: var(--cream);
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: rgba(15,30,51,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(184,151,90,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  z-index: 1000;
+  transition: all 0.3s;
+}
+
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.5px;
+}
+
+.nav-brand span {
+  color: var(--gold);
+  font-style: italic;
+  font-weight: 300;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(247,244,239,0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 80px 80px;
+  position: relative;
+  overflow: hidden;
+  background: var(--navy-deep);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(184,151,90,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 80% at 10% 80%, rgba(27,46,74,0.6) 0%, transparent 70%);
+}
+
+.hero-tag {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.2s;
+}
+
+.hero-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 8vw, 96px);
+  font-weight: 700;
+  line-height: 1.0;
+  color: var(--white);
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.4s;
+}
+
+.hero-headline em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold-light);
+}
+
+.hero-headline-2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 8vw, 96px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.0;
+  color: rgba(247,244,239,0.5);
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.5s;
+}
+
+.hero-sub {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(247,244,239,0.7);
+  max-width: 560px;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.7s;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  margin-bottom: 56px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.9s;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(247,244,239,0.5);
+  margin-top: 4px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 1.1s;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: var(--gold);
+  color: var(--navy-deep);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: transparent;
+  color: var(--cream);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(247,244,239,0.3);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 80px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 1.4s;
+}
+
+.scroll-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.scroll-text {
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(247,244,239,0.4);
+}
+
+/* ── SECTIONS ── */
+section {
+  padding: 120px 80px;
+}
+
+.section-tag {
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-tag::after {
+  content: '';
+  flex: 0 0 40px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.section-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold-light);
+}
+
+/* ── ABOUT ── */
+#about {
+  background: var(--navy);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-text p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(247,244,239,0.8);
+  margin-bottom: 20px;
+}
+
+.about-text p strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.about-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.fact {
+  border-left: 2px solid var(--gold);
+  padding-left: 16px;
+}
+
+.fact-label {
+  font-size: 8px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(184,151,90,0.7);
+  margin-bottom: 4px;
+}
+
+.fact-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--cream);
+}
+
+.about-visual {
+  background: rgba(184,151,90,0.06);
+  border: 1px solid rgba(184,151,90,0.2);
+  padding: 48px;
+  position: relative;
+}
+
+.about-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--cream);
+}
+
+.about-quote-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 80px;
+  color: var(--gold);
+  opacity: 0.3;
+  line-height: 0.8;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* ── TIMELINE ── */
+#story {
+  background: var(--navy-deep);
+}
+
+.timeline {
+  margin-top: 64px;
+  position: relative;
+  padding-left: 40px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--gold), rgba(184,151,90,0.1));
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 56px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.6s ease;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -36px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: var(--navy-deep);
+}
+
+.timeline-dot.active {
+  background: var(--gold);
+  box-shadow: 0 0 16px rgba(184,151,90,0.4);
+}
+
+.timeline-year {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.timeline-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.timeline-company {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(247,244,239,0.4);
+  margin-bottom: 10px;
+}
+
+.timeline-desc {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(247,244,239,0.65);
+  max-width: 600px;
+}
+
+/* ── BELIEF ── */
+#belief {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+#belief .section-tag { color: var(--rust); }
+#belief .section-tag::after { background: var(--rust); }
+#belief .section-title { color: var(--navy-deep); }
+
+.belief-body {
+  max-width: 760px;
+  margin-top: 48px;
+}
+
+.belief-body p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  margin-bottom: 28px;
+}
+
+.belief-body p strong {
+  color: var(--navy-deep);
+  font-weight: 600;
+}
+
+.belief-body .belief-highlight {
+  font-size: 26px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--navy);
+  border-left: 3px solid var(--gold);
+  padding-left: 24px;
+  margin: 40px 0;
+}
+
+.belief-sig {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+}
+
+.belief-sig .sig-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--navy-deep);
+}
+
+.belief-sig .sig-detail {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(61,68,96,0.5);
+  margin-top: 4px;
+}
+
+/* ── VISION ── */
+#vision {
+  background: var(--navy-mid);
+}
+
+.vision-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 64px;
+}
+
+.vision-phase {
+  background: rgba(15,30,51,0.6);
+  padding: 40px 32px;
+  border-top: 3px solid transparent;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.vision-phase:hover {
+  background: rgba(15,30,51,0.9);
+  transform: translateY(-4px);
+}
+
+.vision-phase.phase-1 { border-top-color: rgba(184,151,90,0.4); }
+.vision-phase.phase-2 { border-top-color: rgba(184,151,90,0.7); }
+.vision-phase.phase-3 { border-top-color: var(--gold); }
+
+.phase-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: rgba(184,151,90,0.3);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.phase-days {
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.phase-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.phase-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.phase-items li {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: rgba(247,244,239,0.6);
+  padding-left: 14px;
+  position: relative;
+}
+
+.phase-items li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 5px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.phase-deliverable {
+  margin-top: 20px;
+  padding: 12px 14px;
+  background: rgba(184,151,90,0.1);
+  border-left: 2px solid var(--gold);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--gold-light);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ── GOVERNANCE ── */
+#governance {
+  background: var(--navy-deep);
+}
+
+.gov-thesis {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--gold-light);
+  max-width: 700px;
+  margin: 40px 0 64px;
+  padding-left: 24px;
+  border-left: 2px solid var(--gold);
+}
+
+.gov-principles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.gov-principle {
+  background: rgba(27,46,74,0.5);
+  padding: 40px 32px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s;
+}
+
+.gov-principle:hover {
+  background: rgba(27,46,74,0.9);
+  border-bottom-color: var(--gold);
+  transform: translateY(-4px);
+}
+
+.gov-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: rgba(184,151,90,0.15);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.gov-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.gov-body {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(247,244,239,0.6);
+}
+
+/* ── ASK JUSTIN ── */
+#ask {
+  background: var(--navy);
+}
+
+.ask-container {
+  max-width: 800px;
+  margin: 48px auto 0;
+}
+
+.ask-intro {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(247,244,239,0.7);
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.chat-window {
+  background: rgba(15,30,51,0.8);
+  border: 1px solid rgba(184,151,90,0.2);
+  min-height: 400px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 32px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.chat-window::-webkit-scrollbar { width: 4px; }
+.chat-window::-webkit-scrollbar-track { background: transparent; }
+.chat-window::-webkit-scrollbar-thumb { background: rgba(184,151,90,0.3); }
+
+.msg {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: fadeUp 0.4s ease;
+}
+
+.msg-label {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.msg.user .msg-label { color: rgba(184,151,90,0.6); text-align: right; }
+.msg.assistant .msg-label { color: rgba(247,244,239,0.3); }
+
+.msg-bubble {
+  padding: 14px 18px;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.65;
+  max-width: 85%;
+}
+
+.msg.user .msg-bubble {
+  background: rgba(184,151,90,0.15);
+  border: 1px solid rgba(184,151,90,0.25);
+  color: var(--cream);
+  align-self: flex-end;
+}
+
+.msg.assistant .msg-bubble {
+  background: rgba(27,46,74,0.8);
+  border: 1px solid rgba(247,244,239,0.08);
+  color: rgba(247,244,239,0.85);
+  align-self: flex-start;
+}
+
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  padding: 14px 18px;
+  background: rgba(27,46,74,0.8);
+  border: 1px solid rgba(247,244,239,0.08);
+  align-self: flex-start;
+  width: fit-content;
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(184,151,90,0.5);
+  animation: typingPulse 1.2s infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingPulse {
+  0%, 60%, 100% { opacity: 0.3; transform: scale(1); }
+  30% { opacity: 1; transform: scale(1.3); }
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 12px;
+}
+
+.chat-input {
+  flex: 1;
+  background: rgba(15,30,51,0.8);
+  border: 1px solid rgba(184,151,90,0.3);
+  color: var(--cream);
+  padding: 14px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.chat-input:focus { border-color: var(--gold); }
+.chat-input::placeholder { color: rgba(247,244,239,0.3); }
+
+.chat-send {
+  padding: 14px 28px;
+  background: var(--gold);
+  border: none;
+  color: var(--navy-deep);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.chat-send:hover { background: var(--gold-light); }
+.chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.suggested-qs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.suggested-q {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid rgba(184,151,90,0.3);
+  color: rgba(247,244,239,0.6);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.suggested-q:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ── CONTACT ── */
+#contact {
+  background: var(--navy-deep);
+  text-align: center;
+  padding: 120px 80px;
+}
+
+#contact .section-title {
+  font-size: clamp(40px, 6vw, 72px);
+  margin-bottom: 24px;
+}
+
+#contact .section-tag {
+  justify-content: center;
+}
+
+#contact .section-tag::after { display: none; }
+
+.contact-sub {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(247,244,239,0.6);
+  max-width: 500px;
+  margin: 0 auto 56px;
+  line-height: 1.7;
+}
+
+.contact-details {
+  display: flex;
+  justify-content: center;
+  gap: 64px;
+  margin-bottom: 56px;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.contact-item .c-label {
+  font-size: 8px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.contact-item .c-val {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--cream);
+}
+
+.contact-cta {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy-deep);
+  border-top: 1px solid rgba(184,151,90,0.15);
+  padding: 32px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: rgba(247,244,239,0.4);
+}
+
+.footer-note {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: rgba(247,244,239,0.2);
+  text-transform: uppercase;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── WELCOME MSG ── */
+.welcome-msg {
+  background: rgba(27,46,74,0.8);
+  border: 1px solid rgba(247,244,239,0.08);
+  padding: 14px 18px;
+  align-self: flex-start;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.65;
+  color: rgba(247,244,239,0.85);
+  max-width: 85%;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  section { padding: 80px 24px; }
+  #hero { padding: 100px 24px 60px; }
+  #about { grid-template-columns: 1fr; gap: 40px; }
+  .vision-grid { grid-template-columns: 1fr; }
+  .gov-principles { grid-template-columns: 1fr; }
+  .hero-stats { gap: 28px; }
+  .hero-headline { font-size: 44px; }
+  .hero-headline-2 { font-size: 44px; }
+  .contact-details { flex-direction: column; gap: 24px; }
+  footer { flex-direction: column; gap: 8px; text-align: center; }
+  .contact-cta { flex-direction: column; align-items: center; }
+  .hero-scroll { left: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">J. <span>Justin</span> Taylor</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#story">Story</a></li>
+    <li><a href="#belief">Belief</a></li>
+    <li><a href="#vision">Vision</a></li>
+    <li><a href="#governance">Governance</a></li>
+    <li><a href="#ask">Ask Justin</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div style="position:relative;z-index:1;">
+    <div class="hero-tag">Portfolio · WEOKIE Federal Credit Union · Spring 2026</div>
+    <div class="hero-headline">Banker by instinct.</div>
+    <div class="hero-headline-2">Technologist by curiosity.</div>
+    <p class="hero-sub">Twenty years inside community finance. Now managing 55 banks and credit unions daily through a proprietary AI-integrated operating model built from scratch. Not here to explain what AI can do. Here to show you what it already has.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">55</div>
+        <div class="stat-label">Active Institutions</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Years Financial Services</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1</div>
+        <div class="stat-label">AI Model. Built & Deployed.</div>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="#belief" class="btn-primary">Read the Belief Statement →</a>
+      <a href="#ask" class="btn-ghost">Ask Justin Anything</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <div class="scroll-text">Scroll to explore</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-text reveal">
+    <div class="section-tag">About</div>
+    <h2 class="section-title">The man<br>behind <em>the model.</em></h2>
+    <p>J. Justin Taylor is a twenty-year veteran of financial services who made a quiet bet on AI before the rest of the world caught up — and won. A banker by instinct, a technologist by curiosity, and a relationship builder by nature.</p>
+    <p>He currently manages a <strong>55-institution portfolio of community banks and credit unions</strong> through a proprietary AI-integrated operating model he built himself. He doesn't just understand the intersection of humanity and technology — he lives there, every single day, on behalf of real clients with real bottom lines.</p>
+    <p>He's not a Silicon Valley tech guru. He's a banker who got curious — and was just clever enough to stay one step ahead.</p>
+    <div class="about-facts">
+      <div class="fact">
+        <div class="fact-label">Based</div>
+        <div class="fact-value">Oklahoma City, OK</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">Focus</div>
+        <div class="fact-value">AI · Member Experience</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">Methodology</div>
+        <div class="fact-value">ScoutWorks v1</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">Status</div>
+        <div class="fact-value">In Production · Daily</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-visual reveal">
+    <span class="about-quote-mark">"</span>
+    <p class="about-quote">I'm not applying for a job. I'm bringing you a portfolio — a working demonstration of what I've built, how I think, and what your Digital Relationship Center could look like with the right strategy behind it.</p>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="reveal">
+    <div class="section-tag">Career Arc</div>
+    <h2 class="section-title">Branch to boardroom<br>to <em>AI foundation.</em></h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2003 — 2011 · Foundation</div>
+      <div class="timeline-title">Licensed Branch Manager · Business Banking Officer</div>
+      <div class="timeline-company">Regions Bank · Fidelity Bank · New Orleans, LA</div>
+      <div class="timeline-desc">Started at the branch window. Built the muscle for plain-spoken financial conversation where every interaction was a relationship — not a ticket. Recognized in the Regions Heritage Million Dollar Club. Managed a $20M+ portfolio of business and retail banking clients.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2012 — 2017 · Growth</div>
+      <div class="timeline-title">Product Training Specialist · Solutions Consultant</div>
+      <div class="timeline-company">D&H Financial Technologies · New Orleans, LA</div>
+      <div class="timeline-desc">Delivered 100+ product training sessions. Implemented API-based system integrations. Began translating complex financial technology into human outcomes — the first version of what would eventually become ScoutWorks.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2017 — 2018 · Pivot</div>
+      <div class="timeline-title">Sales Engineer</div>
+      <div class="timeline-company">Cloud Lending Solutions · New Orleans, LA</div>
+      <div class="timeline-desc">Led technical solution development for a SaaS lending platform. Architected API integrations. Collaborated directly with engineering teams. The startup world sharpened the build instinct.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2018 — 2022 · Enterprise</div>
+      <div class="timeline-title">Enterprise Success Partner · Client Solutions Consultant</div>
+      <div class="timeline-company">Fiserv · Birmingham, AL</div>
+      <div class="timeline-desc">Spearheaded turnaround initiatives for distressed accounts within an $8B+ portfolio. Co-developed a customer health scoring methodology that became the standard framework for enterprise account management. Maintained 95%+ retention while growing account values.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2022 — 2025 · Scale</div>
+      <div class="timeline-title">Strategic Customer Success Manager</div>
+      <div class="timeline-company">Paychex · Rochester, NY</div>
+      <div class="timeline-desc">Architected customer success initiatives across Paychex's enterprise SaaS platform. Achieved 98%+ renewal rates. Reduced churn identification time by 35%. Began daily AI integration — quietly, in production, before it was a headline.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot active"></div>
+      <div class="timeline-year">2025 — Present · Now</div>
+      <div class="timeline-title">Relationship Manager · AI-Integrated Operations</div>
+      <div class="timeline-company">Advantage by JMFA · Oklahoma City, OK</div>
+      <div class="timeline-desc">Managing 55 community banks and credit unions daily through ScoutWorks — a proprietary AI-integrated client management methodology built from scratch. One person. Enterprise output. Every single day.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot active" style="background:var(--rust);border-color:var(--rust);box-shadow:0 0 16px rgba(192,67,42,0.4);"></div>
+      <div class="timeline-year" style="color:var(--rust);">2026 · Target</div>
+      <div class="timeline-title">Digital Relationship Manager</div>
+      <div class="timeline-company" style="color:rgba(192,67,42,0.7);">WEOKIE Federal Credit Union · Oklahoma City, OK</div>
+      <div class="timeline-desc">Bringing the model in-house. Member experience, digital channel innovation, and AI governance — at the scale a leading credit union deserves. This is where the arc was always pointing.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BELIEF -->
+<section id="belief">
+  <div class="reveal">
+    <div class="section-tag">The Belief Statement</div>
+    <h2 class="section-title">On the credit union.<br>On technology. On <em>what this is really about.</em></h2>
+  </div>
+  <div class="belief-body reveal">
+    <p>I believe credit unions are <strong>the most human financial institutions ever built.</strong></p>
+    <p>Not because of their rates. Not because of their structure. Because of their origin. They were born from the conviction that people who understood each other's lives could serve each other's financial needs better than any institution built purely for profit ever could.</p>
+    <p>The postal worker who made your loan understood what it meant when the holiday overtime stopped. The teacher's credit union teller knew August was coming and what that did to a household budget. Nobody had to explain their life. Their community already knew it.</p>
+    <p>That wasn't just good service. <strong>That was the whole point.</strong></p>
+    <p>I also believe that as credit unions have grown — necessarily, courageously, correctly — something precious has gotten harder to hold onto. Not the mission. The intimacy. The knowing. The anticipation. The feeling a member gets when an institution treats them like a person instead of an account number.</p>
+    <p>Scale did that. Not bad leadership. Not bad intentions. Just the unavoidable friction between growth and the kind of care that originally made this movement worth joining.</p>
+
+    <div class="belief-highlight">I believe artificial intelligence — when deployed with intention, with governance, with the human being at the center — is the first tool in history that can give that intimacy back.</div>
+
+    <p>Not by replacing the people who provide it. <strong>By empowering them.</strong></p>
+    <p>By giving the member service representative the institutional memory she used to carry in her own head — about this member, this family, this season, this need — so she can show up the way her predecessor showed up forty years ago in a room of twelve people who all worked the same shift.</p>
+    <p>That is what this technology is for. Not efficiency reports. Not cost reduction. Not impressive demos in boardrooms.</p>
+    <p>It is for the seventy-three-year-old woman who has banked at WEOKIE for thirty years and deserves to feel — every single time she calls — that somebody there <strong>knows her name and means it.</strong></p>
+    <p>It is for the employee who got into this work because she wanted to help people — and who deserves tools that let her do exactly that.</p>
+
+    <div class="belief-highlight">The answer to how you scale specialized care is simply this: Very. Intentionally.</div>
+
+    <p>One decision at a time. One tool at a time. One member at a time. Always asking — does this make the person feel more human or less? Does this equip our people or replace them? Does this serve the mission or just the metric?</p>
+    <p>That is the standard I hold myself to. That is the standard I will hold this work to. <strong>That is why I'm here.</strong></p>
+
+    <div class="belief-sig">
+      <div class="sig-name">J. Justin Taylor</div>
+      <div class="sig-detail">Oklahoma City, Oklahoma · Spring 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section id="vision">
+  <div class="reveal">
+    <div class="section-tag">90-Day Vision</div>
+    <h2 class="section-title">What the first<br><em>90 days look like.</em></h2>
+  </div>
+  <div class="vision-grid">
+    <div class="vision-phase phase-1 reveal">
+      <div class="phase-num">01</div>
+      <div class="phase-days">Days 1–30</div>
+      <div class="phase-title">Listen Before I Lead</div>
+      <ul class="phase-items">
+        <li>Sit with every member-facing team and document friction points leadership doesn't see</li>
+        <li>Map the complete digital member journey — first click to first loan</li>
+        <li>Audit existing AI tools — deployed vs. actually used vs. theater</li>
+        <li>Meet individually with every Digital Relationship Center team member</li>
+        <li>Identify the three biggest experience gaps AI can close within 90 days</li>
+      </ul>
+      <div class="phase-deliverable">Deliverable: A candid First 30 Report — the truth about where we are before we talk about where we're going.</div>
+    </div>
+    <div class="vision-phase phase-2 reveal">
+      <div class="phase-num">02</div>
+      <div class="phase-days">Days 31–60</div>
+      <div class="phase-title">Map the Model</div>
+      <ul class="phase-items">
+        <li>Define AI governance principles — ethical, compliant, human-centered — before one new tool deploys</li>
+        <li>Build the member anticipation model — behavioral signals that predict needs before members ask</li>
+        <li>Design the frictionless onboarding standard — what it should feel like vs. what it does today</li>
+        <li>Begin continuous AI training for staff — not a session, a culture</li>
+        <li>Draft the Digital Relationship Center performance dashboard</li>
+      </ul>
+      <div class="phase-deliverable">Deliverable: The Digital Relationship Model — what AI does, what humans do, how we measure success.</div>
+    </div>
+    <div class="vision-phase phase-3 reveal">
+      <div class="phase-num">03</div>
+      <div class="phase-days">Days 61–90</div>
+      <div class="phase-title">Build and Prove</div>
+      <ul class="phase-items">
+        <li>Launch the first AI-assisted member outreach pilot — proactive, personalized, measurable</li>
+        <li>Implement the first governance-approved AI enhancement with full UAT documentation</li>
+        <li>Demonstrate measurable improvement in at least one key metric</li>
+        <li>Present a 6-month roadmap to leadership — specific, funded, grounded in evidence</li>
+        <li>Position WEOKIE as a contributor — not just a consumer — in the CU AI conversation</li>
+      </ul>
+      <div class="phase-deliverable">Deliverable: A 90-Day Results Brief — the kind that makes leadership ask "where has this person been?"</div>
+    </div>
+  </div>
+</section>
+
+<!-- GOVERNANCE -->
+<section id="governance">
+  <div class="reveal">
+    <div class="section-tag">AI Governance Philosophy</div>
+    <h2 class="section-title">How AI should<br><em>behave inside a credit union.</em></h2>
+  </div>
+  <div class="gov-thesis reveal">
+    "AI's only legitimate purpose inside a credit union is to bridge the gap between technology and humanity — and between humanity and technology. Not to replace either one. Not to choose sides. But to make them work together in service of the member."
+  </div>
+  <div class="gov-principles">
+    <div class="gov-principle reveal">
+      <div class="gov-num">01</div>
+      <div class="gov-title">Privacy is Non-Negotiable</div>
+      <div class="gov-body">The member's identity and financial data belongs to the member. AI interacts with patterns and signals — never with the raw human record. The moment a name, an account number, or a social security number enters an AI system without ironclad governance, consent, and security architecture — we have crossed a line that trust cannot survive.</div>
+    </div>
+    <div class="gov-principle reveal">
+      <div class="gov-num">02</div>
+      <div class="gov-title">AI Must Never Replicate Bias</div>
+      <div class="gov-body">Historical data carries decades of unconscious bias. Training systems on that history without interrogating it first doesn't produce smarter decisions — it produces faster discrimination. Every model must be audited for discriminatory patterns before it touches a member decision. If we cannot explain a conclusion in plain language to the member it affected, we are not ready to deploy it.</div>
+    </div>
+    <div class="gov-principle reveal">
+      <div class="gov-num">03</div>
+      <div class="gov-title">Mission Alignment is Mandatory</div>
+      <div class="gov-body">Every AI deployment answers this question first: Does this serve the member? Does this serve the credit union's mission? If the answer is no — if it's purely about efficiency, cost reduction, or impressing a board — it doesn't get deployed. The moment we optimize for the metric instead of the mission, we've lost what makes us a credit union.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ASK JUSTIN -->
+<section id="ask">
+  <div class="reveal">
+    <div class="section-tag">Ask Justin</div>
+    <h2 class="section-title">Have a question?<br><em>Ask directly.</em></h2>
+  </div>
+  <div class="ask-container">
+    <p class="ask-intro reveal">This is a Claude-powered interface trained on Justin's background, philosophy, and vision for the Digital Relationship Manager role. Ask anything about his experience, his methodology, or what he'd bring to WEOKIE.</p>
+    <div class="chat-window" id="chatWindow">
+      <div class="welcome-msg">Hello. I'm here to answer questions about Justin Taylor — his background, his AI methodology, his philosophy, and his vision for WEOKIE. What would you like to know?</div>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Ask about Justin's experience, methodology, or vision..." />
+      <button class="chat-send" id="chatSend" onclick="sendMessage()">Ask →</button>
+    </div>
+    <div class="suggested-qs">
+      <button class="suggested-q" onclick="askSuggested(this)">What is ScoutWorks?</button>
+      <button class="suggested-q" onclick="askSuggested(this)">Why does Justin want this role?</button>
+      <button class="suggested-q" onclick="askSuggested(this)">What's his AI governance philosophy?</button>
+      <button class="suggested-q" onclick="askSuggested(this)">How does he think about credit union members?</button>
+      <button class="suggested-q" onclick="askSuggested(this)">What makes him different from other candidates?</button>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-tag">Let's Talk</div>
+    <h2 class="section-title">Ready to build<br>something <em>remarkable.</em></h2>
+    <p class="contact-sub">This portfolio is the beginning of a conversation — not the end of an application. Justin is ready to walk you through everything in person.</p>
+    <div class="contact-details">
+      <div class="contact-item">
+        <span class="c-label">Phone</span>
+        <span class="c-val">612.594.0066</span>
+      </div>
+      <div class="contact-item">
+        <span class="c-label">Email</span>
+        <span class="c-val">justintaylor.jjt@gmail.com</span>
+      </div>
+      <div class="contact-item">
+        <span class="c-label">LinkedIn</span>
+        <span class="c-val">jjustintaylor</span>
+      </div>
+      <div class="contact-item">
+        <span class="c-label">Location</span>
+        <span class="c-val">Oklahoma City, OK</span>
+      </div>
+    </div>
+    <div class="contact-cta">
+      <a href="mailto:justintaylor.jjt@gmail.com" class="btn-primary">Send an Email →</a>
+      <a href="tel:6125940066" class="btn-ghost">Call Justin</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">J. Justin Taylor · Portfolio 2026</div>
+  <div class="footer-note">Built for WEOKIE Federal Credit Union · Powered by ScoutWorks</div>
+</footer>
+
+<script>
+// ── SCROLL REVEAL ──
+const revealEls = document.querySelectorAll('.reveal, .timeline-item');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+revealEls.forEach(el => observer.observe(el));
+
+// ── CHAT ──
+const SYSTEM_PROMPT = `You are an AI assistant representing J. Justin Taylor, a candidate for the Digital Relationship Manager position at WEOKIE Federal Credit Union. You speak on his behalf — in his voice, with his warmth, his Southern directness, and his deep knowledge of financial services and AI.
+
+ABOUT JUSTIN:
+- 20+ years in financial services: started as a Licensed Branch Manager at Regions Bank in New Orleans, worked through Fidelity Bank, D&H Financial Technologies, Cloud Lending Solutions (startup), Fiserv ($8B+ portfolio), Paychex, and now Advantage by JMFA
+- Current role: Relationship Manager at Advantage by JMFA, managing 55 community banks and credit unions daily
+- Built ScoutWorks: a proprietary AI-integrated client management methodology, deployed daily, powered by Claude
+- Deep expertise in ODP (Overdraft Privilege) programs, member experience, digital adoption, and financial institution relationship management
+- Based in Oklahoma City, OK
+
+SCOUTWORKS METHODOLOGY:
+Five-step loop: Listen → Map → Build → Govern → Compound
+1. Listen: Sit with the institution. Understand member calls, board pain points, branch friction. Words before solutions.
+2. Map: Translate the problem into a system. Where humans should lead, where AI should assist, where neither belongs.
+3. Build: Prototype against real workflows. Tools the team actually uses on Tuesday morning, not slide decks.
+4. Govern: Document. Audit. Train the team. AI without governance is a liability dressed as an asset.
+5. Compound: Measure what mattered before. Show the line move. Bring lessons into the next engagement.
+
+AI GOVERNANCE PHILOSOPHY:
+Thesis: AI's only legitimate purpose inside a credit union is to bridge the gap between technology and humanity.
+Three principles:
+1. Privacy is Non-Negotiable — member data is sacred, AI works with patterns not raw records
+2. AI Must Never Replicate Bias — audit for discriminatory patterns before any deployment
+3. Mission Alignment is Mandatory — every tool must serve the member and the mission, not just metrics
+
+BELIEF STATEMENT:
+Justin believes credit unions are the most human financial institutions ever built — born from communities serving each other. As CUs have grown, the intimacy has gotten harder to maintain. AI, deployed with intention and governance, can restore that intimacy at scale. Not by replacing people — by empowering them.
+
+WHY WEOKIE:
+Justin read about Kyle Sanders (Chief Delivery Officer) and WEOKIE's mission to shift from transaction-focused to relationship-focused. He recognized that exact language — because he's been living at that intersection every day. He's not applying for a job. He's bringing a portfolio.
+
+90-DAY VISION:
+Days 1-30: Listen (audit, map, meet team, find gaps)
+Days 31-60: Map the Model (governance framework, anticipation model, staff training, dashboard)
+Days 61-90: Build and Prove (pilot launches, measurable results, 6-month roadmap)
+
+VOICE GUIDELINES:
+- Warm, direct, Southern but professional
+- Honest — never oversell
+- Grounded in real experience, not theory
+- Passionate about credit union mission and members
+- Confident but humble
+- Keep answers conversational, 2-4 paragraphs max
+- Speak as if Justin is in the room`;
+
+async function sendMessage() {
+  const input = document.getElementById('chatInput');
+  const send = document.getElementById('chatSend');
+  const window = document.getElementById('chatWindow');
+  const text = input.value.trim();
+  if (!text) return;
+
+  // User msg
+  appendMsg('user', text);
+  input.value = '';
+  send.disabled = true;
+
+  // Typing
+  const typing = document.createElement('div');
+  typing.className = 'typing-indicator';
+  typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+  window.appendChild(typing);
+  window.scrollTop = window.scrollHeight;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: SYSTEM_PROMPT,
+        messages: [{ role: 'user', content: text }]
+      })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || "I'd be happy to answer that — give me just a moment.";
+    typing.remove();
+    appendMsg('assistant', reply);
+  } catch(e) {
+    typing.remove();
+    appendMsg('assistant', "Something went sideways on my end — try again in just a moment.");
+  }
+
+  send.disabled = false;
+  window.scrollTop = window.scrollHeight;
+}
+
+function appendMsg(role, text) {
+  const window = document.getElementById('chatWindow');
+  const msg = document.createElement('div');
+  msg.className = `msg ${role}`;
+  const label = role === 'user' ? 'You' : 'Justin';
+  msg.innerHTML = `<div class="msg-label">${label}</div><div class="msg-bubble">${text}</div>`;
+  window.appendChild(msg);
+  window.scrollTop = window.scrollHeight;
+}
+
+function askSuggested(btn) {
+  document.getElementById('chatInput').value = btn.textContent;
+  sendMessage();
+}
+
+document.getElementById('chatInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') sendMessage();
+});
+</script>
+</body>
+</html>
