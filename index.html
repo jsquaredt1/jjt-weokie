@@ -1278,87 +1278,41 @@ footer {
 
 <script>
 // ── SCROLL REVEAL ──
-const revealEls = document.querySelectorAll('.reveal, .timeline-item');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
-    }
-  });
-}, { threshold: 0.1 });
-revealEls.forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal, .timeline-item').forEach(function(el) {
+  new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 }).observe(el);
+});
 
 // ── CHAT ──
-const SYSTEM_PROMPT = `You are an AI assistant representing J. Justin Taylor, a candidate for the Digital Relationship Manager position at WEOKIE Federal Credit Union. You speak on his behalf — in his voice, with his warmth, his Southern directness, and his deep knowledge of financial services and AI.
-
-ABOUT JUSTIN:
-- 20+ years in financial services: started as a Licensed Branch Manager at Regions Bank in New Orleans, worked through Fidelity Bank, D&H Financial Technologies, Cloud Lending Solutions (startup), Fiserv ($8B+ portfolio), Paychex, and now Advantage by JMFA
-- Current role: Relationship Manager at Advantage by JMFA, managing 55 community banks and credit unions daily
-- Built ScoutWorks: a proprietary AI-integrated client management methodology, deployed daily, powered by Claude
-- Deep expertise in ODP (Overdraft Privilege) programs, member experience, digital adoption, and financial institution relationship management
-- Based in Oklahoma City, OK
-
-SCOUTWORKS METHODOLOGY:
-Five-step loop: Listen → Map → Build → Govern → Compound
-1. Listen: Sit with the institution. Understand member calls, board pain points, branch friction. Words before solutions.
-2. Map: Translate the problem into a system. Where humans should lead, where AI should assist, where neither belongs.
-3. Build: Prototype against real workflows. Tools the team actually uses on Tuesday morning, not slide decks.
-4. Govern: Document. Audit. Train the team. AI without governance is a liability dressed as an asset.
-5. Compound: Measure what mattered before. Show the line move. Bring lessons into the next engagement.
-
-AI GOVERNANCE PHILOSOPHY:
-Thesis: AI's only legitimate purpose inside a credit union is to bridge the gap between technology and humanity.
-Three principles:
-1. Privacy is Non-Negotiable — member data is sacred, AI works with patterns not raw records
-2. AI Must Never Replicate Bias — audit for discriminatory patterns before any deployment
-3. Mission Alignment is Mandatory — every tool must serve the member and the mission, not just metrics
-
-BELIEF STATEMENT:
-Justin believes credit unions are the most human financial institutions ever built — born from communities serving each other. As CUs have grown, the intimacy has gotten harder to maintain. AI, deployed with intention and governance, can restore that intimacy at scale. Not by replacing people — by empowering them.
-
-WHY WEOKIE:
-Justin read about Kyle Sanders (Chief Delivery Officer) and WEOKIE's mission to shift from transaction-focused to relationship-focused. He recognized that exact language — because he's been living at that intersection every day. He's not applying for a job. He's bringing a portfolio.
-
-90-DAY VISION:
-Days 1-30: Listen (audit, map, meet team, find gaps)
-Days 31-60: Map the Model (governance framework, anticipation model, staff training, dashboard)
-Days 61-90: Build and Prove (pilot launches, measurable results, 6-month roadmap)
-
-VOICE GUIDELINES:
-- Warm, direct, Southern but professional
-- Honest — never oversell
-- Grounded in real experience, not theory
-- Passionate about credit union mission and members
-- Confident but humble
-- Keep answers conversational, 2-4 paragraphs max
-- Speak as if Justin is in the room`;
-
-async function sendMessage() {
-  const input = document.getElementById('chatInput');
-  const send = document.getElementById('chatSend');
-  const text = input.value.trim();
+function sendMessage() {
+  var input = document.getElementById('chatInput');
+  var send = document.getElementById('chatSend');
+  var text = input.value.trim();
   if (!text) return;
 
   appendMsg('user', text);
   input.value = '';
   send.disabled = true;
 
-  const typing = document.createElement('div');
+  var typing = document.createElement('div');
   typing.className = 'typing-indicator';
   typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
   document.getElementById('chatWindow').appendChild(typing);
-  document.getElementById('chatWindow').scrollTop = document.getElementById('chatWindow').scrollHeight;
+  document.getElementById('chatWindow').scrollTop = 99999;
 
-  setTimeout(() => {
+  setTimeout(function() {
     typing.remove();
-    const reply = getReply(text);
+    var reply = getReply(text);
     appendMsg('assistant', reply);
     send.disabled = false;
-    document.getElementById('chatWindow').scrollTop = document.getElementById('chatWindow').scrollHeight;
+    document.getElementById('chatWindow').scrollTop = 99999;
   }, 1200);
 }
 
-const QA = [
+var QA = [
   {
     keys: ['scoutworks', 'scout works', 'methodology', 'method', 'how do you work'],
     answer: "ScoutWorks is the AI-integrated client management methodology I built from scratch. It runs on a five-step loop: Listen, Map, Build, Govern, Compound. Every engagement starts with sitting with the institution and understanding the real friction points before I ever suggest a solution. Then I map where humans should lead, where AI should assist, and where neither belongs. We build against real workflows — not slide decks. We govern every AI tool with documentation and training. And we compound — measuring what mattered before so we can show the line move. It's been deployed daily across 55 financial institutions and it works."
@@ -1409,24 +1363,26 @@ const QA = [
   }
 ];
 
-const DEFAULT_REPLY = "That's a great question — and honestly, the best way I can answer it is by pointing you to the Belief Statement or the 90-Day Vision sections of this portfolio. Everything I stand for and plan to bring to WEOKIE is laid out there in full. But I'd also love to answer anything directly — reach me at 612.594.0066 or justintaylor.jjt@gmail.com.";
+var DEFAULT_REPLY = "That's a great question — and honestly, the best way I can answer it is by pointing you to the Belief Statement or the 90-Day Vision sections of this portfolio. Everything I stand for and plan to bring to WEOKIE is laid out there in full. But I'd also love to answer anything directly — reach me at 612.594.0066 or justintaylor.jjt@gmail.com.";
 
 function getReply(text) {
-  const lower = text.toLowerCase();
-  for (const qa of QA) {
-    if (qa.keys.some(k => lower.includes(k))) return qa.answer;
+  var lower = text.toLowerCase();
+  for (var i = 0; i < QA.length; i++) {
+    for (var j = 0; j < QA[i].keys.length; j++) {
+      if (lower.indexOf(QA[i].keys[j]) !== -1) return QA[i].answer;
+    }
   }
   return DEFAULT_REPLY;
 }
 
 function appendMsg(role, text) {
-  const chatWin = document.getElementById('chatWindow');
-  const msg = document.createElement('div');
-  msg.className = `msg ${role}`;
-  const label = role === 'user' ? 'You' : 'Justin';
-  msg.innerHTML = `<div class="msg-label">${label}</div><div class="msg-bubble">${text}</div>`;
+  var chatWin = document.getElementById('chatWindow');
+  var msg = document.createElement('div');
+  msg.className = 'msg ' + role;
+  var label = role === 'user' ? 'You' : 'Justin';
+  msg.innerHTML = '<div class="msg-label">' + label + '</div><div class="msg-bubble">' + text + '</div>';
   chatWin.appendChild(msg);
-  chatWin.scrollTop = chatWin.scrollHeight;
+  chatWin.scrollTop = 99999;
 }
 
 function askSuggested(btn) {
@@ -1434,7 +1390,7 @@ function askSuggested(btn) {
   sendMessage();
 }
 
-document.getElementById('chatInput').addEventListener('keydown', (e) => {
+document.getElementById('chatInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') sendMessage();
 });
 </script>
