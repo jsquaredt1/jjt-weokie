@@ -1277,7 +1277,7 @@ footer {
 </footer>
 
 <script>
-// ── SCROLL REVEAL ──
+// SCROLL REVEAL
 document.querySelectorAll('.reveal, .timeline-item').forEach(function(el) {
   new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
@@ -1286,84 +1286,23 @@ document.querySelectorAll('.reveal, .timeline-item').forEach(function(el) {
   }, { threshold: 0.1 }).observe(el);
 });
 
-// ── CHAT ──
-function sendMessage() {
-  var input = document.getElementById('chatInput');
-  var send = document.getElementById('chatSend');
-  var text = input.value.trim();
-  if (!text) return;
-
-  appendMsg('user', text);
-  input.value = '';
-  send.disabled = true;
-
-  var typing = document.createElement('div');
-  typing.className = 'typing-indicator';
-  typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
-  document.getElementById('chatWindow').appendChild(typing);
-  document.getElementById('chatWindow').scrollTop = 99999;
-
-  setTimeout(function() {
-    typing.remove();
-    var reply = getReply(text);
-    appendMsg('assistant', reply);
-    send.disabled = false;
-    document.getElementById('chatWindow').scrollTop = 99999;
-  }, 1200);
-}
-
+// CHAT
 var QA = [
-  {
-    keys: ['scoutworks', 'scout works', 'methodology', 'method', 'how do you work'],
-    answer: "ScoutWorks is the AI-integrated client management methodology I built from scratch. It runs on a five-step loop: Listen, Map, Build, Govern, Compound. Every engagement starts with sitting with the institution and understanding the real friction points before I ever suggest a solution. Then I map where humans should lead, where AI should assist, and where neither belongs. We build against real workflows — not slide decks. We govern every AI tool with documentation and training. And we compound — measuring what mattered before so we can show the line move. It's been deployed daily across 55 financial institutions and it works."
-  },
-  {
-    keys: ['why weokie', 'why do you want', 'why this role', 'why apply', 'interest in weokie'],
-    answer: "Honestly? I read about Kyle Sanders being brought in to shift WEOKIE from transaction-focused to relationship-focused — and I recognized every word of it. That's the exact problem I've been solving in financial services for twenty years. I've been living at the intersection of human relationships and AI technology every single day, quietly, before it became a headline. WEOKIE is building something that matters. I want to be part of building it."
-  },
-  {
-    keys: ['ai governance', 'governance', 'ethics', 'responsible ai', 'bias', 'privacy'],
-    answer: "My AI governance philosophy is built on three non-negotiables. First, privacy — member data is sacred. AI works with patterns and signals, never raw personal records. Second, AI must never replicate bias. Historical financial data carries decades of discriminatory patterns. If you train a model on that history without interrogating it first, you get faster discrimination dressed up as objectivity. Third, mission alignment — every tool has to answer one question first: does this serve the member? If the answer is no, it doesn't get deployed. Period."
-  },
-  {
-    keys: ['credit union', 'members', 'member experience', 'community', 'mission'],
-    answer: "I believe credit unions are the most human financial institutions ever built — not because of their rates or structure, but because of their origin. They were born from communities serving each other. The postal worker who made your loan understood what it meant when holiday overtime stopped. That wasn't just good service. That was the whole point. As credit unions have grown, that intimacy has gotten harder to hold onto. I believe AI, deployed with intention and governance, is the first tool in history that can give that intimacy back at scale. Not by replacing people — by empowering them."
-  },
-  {
-    keys: ['different', 'stand out', 'unique', 'other candidates', 'what makes you'],
-    answer: "Most candidates will tell you they understand AI or that they've worked in financial services. I've built something real at the intersection of both — deployed daily, across 55 live institutions, with documented governance. I'm not pitching a concept. I'm showing you a working model. And I started at a branch window in New Orleans, which means I understand what it actually feels like to serve a member — not just what the data says about them."
-  },
-  {
-    keys: ['90 day', 'ninety day', 'first 90', 'day one', 'start', 'plan'],
-    answer: "Days 1 through 30 I listen before I lead. I sit with every member-facing team, map the complete digital member journey, audit existing AI tools, and meet individually with every Digital Relationship Center team member. The deliverable is a candid First 30 Report — the truth about where we are. Days 31 through 60 I build the model — governance framework, member anticipation system, staff training culture, performance dashboard. Days 61 through 90 we prove it — launch the first pilot, show measurable improvement in at least one key metric, and present a funded 6-month roadmap to leadership."
-  },
-  {
-    keys: ['experience', 'background', 'career', 'history', 'worked'],
-    answer: "Twenty plus years across retail banking, fintech, and enterprise financial services. I started as a Licensed Branch Manager at Regions Bank in New Orleans — recognized in their Million Dollar Club. Moved through Fidelity Bank, D&H Financial Technologies, Cloud Lending Solutions, Fiserv where I managed an $8B plus portfolio, and Paychex where I hit 98 percent renewal rates. I'm currently a Relationship Manager at Advantage by JMFA managing 55 community banks and credit unions daily through ScoutWorks, the AI methodology I built. Every stop on the arc pointed here."
-  },
-  {
-    keys: ['fiserv', 'paychex', 'jmfa', 'advantage', 'previous'],
-    answer: "At Fiserv I managed distressed enterprise accounts within an $8B plus portfolio and co-developed a customer health scoring methodology that became the standard across the organization. At Paychex I achieved 98 percent renewal rates and reduced churn identification time by 35 percent. At JMFA — where I am now — I manage 55 community banks and credit unions daily through an AI-integrated model I built myself. Each role sharpened a different part of what I bring to WEOKIE."
-  },
-  {
-    keys: ['team', 'leadership', 'manage people', 'staff', 'coach', 'develop'],
-    answer: "My leadership philosophy is simple — equip people to do the work they came here to do. The biggest failure in technology deployment isn't the technology. It's deploying tools without first investing in the people using them. I believe in individual conversations, clear expectations, ongoing coaching, and giving people visibility into why their work matters. A well-equipped, genuinely valued team is the only sustainable competitive advantage any organization has."
-  },
-  {
-    keys: ['digital', 'digital channel', 'online banking', 'mobile', 'onboarding'],
-    answer: "Digital channels are only as good as the human experience they create. The best digital onboarding doesn't feel digital — it feels like someone was expecting you. Frictionless, warm, and clear. What I'd focus on at WEOKIE is building a member anticipation model — using behavioral signals to reach members before they have to reach us. And making sure every digital touchpoint, from first click to first loan, feels like WEOKIE actually knows who you are."
-  },
-  {
-    keys: ['salary', 'pay', 'compensation', 'money'],
-    answer: "I'd welcome that conversation directly with your team. What I can say is that I'm looking for the right fit at the right organization — and WEOKIE feels like that. Compensation matters, but so does the work itself and the people I'd be building it with."
-  },
-  {
-    keys: ['available', 'start', 'when can you'],
-    answer: "I'm available and ready to move thoughtfully and quickly. I'd want to make sure I transition responsibly from my current clients at JMFA — because how I leave says as much about me as how I arrive. That said, I'm genuinely ready for this next chapter."
-  }
+  { keys: ['scoutworks', 'scout works', 'methodology', 'method', 'how do you work'], answer: 'ScoutWorks is the AI-integrated client management methodology I built from scratch. It runs on a five-step loop: Listen, Map, Build, Govern, Compound. Every engagement starts with sitting with the institution and understanding the real friction points before I ever suggest a solution. Then I map where humans should lead, where AI should assist, and where neither belongs. We build against real workflows, not slide decks. We govern every AI tool with documentation and training. And we compound, measuring what mattered before so we can show the line move. It has been deployed daily across 55 financial institutions and it works.' },
+  { keys: ['why weokie', 'why do you want', 'why this role', 'why apply', 'interest in weokie'], answer: 'Honestly, I read about Kyle Sanders being brought in to shift WEOKIE from transaction-focused to relationship-focused and I recognized every word of it. That is the exact problem I have been solving in financial services for twenty years. I have been living at the intersection of human relationships and AI technology every single day, quietly, before it became a headline. WEOKIE is building something that matters. I want to be part of building it.' },
+  { keys: ['ai governance', 'governance', 'ethics', 'responsible', 'bias', 'privacy'], answer: 'My AI governance philosophy is built on three non-negotiables. First, privacy. Member data is sacred. AI works with patterns and signals, never raw personal records. Second, AI must never replicate bias. Historical financial data carries decades of discriminatory patterns. If you train a model on that history without interrogating it first, you get faster discrimination dressed up as objectivity. Third, mission alignment. Every tool has to answer one question first: does this serve the member? If the answer is no, it does not get deployed. Period.' },
+  { keys: ['credit union', 'members', 'member experience', 'community', 'mission'], answer: 'I believe credit unions are the most human financial institutions ever built, not because of their rates or structure, but because of their origin. They were born from communities serving each other. The postal worker who made your loan understood what it meant when holiday overtime stopped. That was the whole point. As credit unions have grown, that intimacy has gotten harder to hold onto. I believe AI, deployed with intention and governance, is the first tool in history that can give that intimacy back at scale. Not by replacing people, by empowering them.' },
+  { keys: ['different', 'stand out', 'unique', 'other candidates', 'what makes you'], answer: 'Most candidates will tell you they understand AI or that they have worked in financial services. I have built something real at the intersection of both, deployed daily, across 55 live institutions, with documented governance. I am not pitching a concept. I am showing you a working model. And I started at a branch window in New Orleans, which means I understand what it actually feels like to serve a member, not just what the data says about them.' },
+  { keys: ['90 day', 'ninety day', 'first 90', 'day one', 'start', 'plan'], answer: 'Days 1 through 30 I listen before I lead. I sit with every member-facing team, map the complete digital member journey, audit existing AI tools, and meet individually with every Digital Relationship Center team member. The deliverable is a candid First 30 Report. Days 31 through 60 I build the model, governance framework, member anticipation system, staff training culture, performance dashboard. Days 61 through 90 we prove it, launch the first pilot, show measurable improvement in at least one key metric, and present a funded 6-month roadmap to leadership.' },
+  { keys: ['experience', 'background', 'career', 'history', 'worked'], answer: 'Twenty plus years across retail banking, fintech, and enterprise financial services. I started as a Licensed Branch Manager at Regions Bank in New Orleans, recognized in their Million Dollar Club. Moved through Fidelity Bank, D&H Financial Technologies, Cloud Lending Solutions, Fiserv where I managed an 8 billion plus portfolio, and Paychex where I hit 98 percent renewal rates. I am currently a Relationship Manager at Advantage by JMFA managing 55 community banks and credit unions daily through ScoutWorks, the AI methodology I built. Every stop on the arc pointed here.' },
+  { keys: ['fiserv', 'paychex', 'jmfa', 'advantage', 'previous'], answer: 'At Fiserv I managed distressed enterprise accounts within an 8 billion plus portfolio and co-developed a customer health scoring methodology that became the standard across the organization. At Paychex I achieved 98 percent renewal rates and reduced churn identification time by 35 percent. At JMFA, where I am now, I manage 55 community banks and credit unions daily through an AI-integrated model I built myself. Each role sharpened a different part of what I bring to WEOKIE.' },
+  { keys: ['team', 'leadership', 'manage people', 'staff', 'coach', 'develop'], answer: 'My leadership philosophy is simple. Equip people to do the work they came here to do. The biggest failure in technology deployment is not the technology. It is deploying tools without first investing in the people using them. I believe in individual conversations, clear expectations, ongoing coaching, and giving people visibility into why their work matters. A well-equipped, genuinely valued team is the only sustainable competitive advantage any organization has.' },
+  { keys: ['digital', 'channel', 'online banking', 'mobile', 'onboarding'], answer: 'Digital channels are only as good as the human experience they create. The best digital onboarding does not feel digital. It feels like someone was expecting you. Frictionless, warm, and clear. What I would focus on at WEOKIE is building a member anticipation model, using behavioral signals to reach members before they have to reach us. And making sure every digital touchpoint, from first click to first loan, feels like WEOKIE actually knows who you are.' },
+  { keys: ['salary', 'pay', 'compensation', 'money'], answer: 'I would welcome that conversation directly with your team. What I can say is that I am looking for the right fit at the right organization, and WEOKIE feels like that. Compensation matters, but so does the work itself and the people I would be building it with.' },
+  { keys: ['available', 'start', 'when can you'], answer: 'I am available and ready to move thoughtfully and quickly. I would want to make sure I transition responsibly from my current clients at JMFA, because how I leave says as much about me as how I arrive. That said, I am genuinely ready for this next chapter.' }
 ];
 
-var DEFAULT_REPLY = "That's a great question — and honestly, the best way I can answer it is by pointing you to the Belief Statement or the 90-Day Vision sections of this portfolio. Everything I stand for and plan to bring to WEOKIE is laid out there in full. But I'd also love to answer anything directly — reach me at 612.594.0066 or justintaylor.jjt@gmail.com.";
+var DEFAULT_REPLY = 'Great question. The best way I can answer it is by pointing you to the Belief Statement or the 90-Day Vision sections of this portfolio. Everything I stand for and plan to bring to WEOKIE is laid out there in full. You can also reach me directly at 612.594.0066 or justintaylor.jjt@gmail.com.';
 
 function getReply(text) {
   var lower = text.toLowerCase();
@@ -1383,6 +1322,26 @@ function appendMsg(role, text) {
   msg.innerHTML = '<div class="msg-label">' + label + '</div><div class="msg-bubble">' + text + '</div>';
   chatWin.appendChild(msg);
   chatWin.scrollTop = 99999;
+}
+
+function sendMessage() {
+  var input = document.getElementById('chatInput');
+  var send = document.getElementById('chatSend');
+  var text = input.value.trim();
+  if (!text) return;
+  appendMsg('user', text);
+  input.value = '';
+  send.disabled = true;
+  var typing = document.createElement('div');
+  typing.className = 'typing-indicator';
+  typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+  document.getElementById('chatWindow').appendChild(typing);
+  setTimeout(function() {
+    typing.remove();
+    appendMsg('assistant', getReply(text));
+    send.disabled = false;
+    document.getElementById('chatWindow').scrollTop = 99999;
+  }, 1200);
 }
 
 function askSuggested(btn) {
