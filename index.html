@@ -1336,7 +1336,6 @@ VOICE GUIDELINES:
 async function sendMessage() {
   const input = document.getElementById('chatInput');
   const send = document.getElementById('chatSend');
-  const window = document.getElementById('chatWindow');
   const text = input.value.trim();
   if (!text) return;
 
@@ -1421,13 +1420,13 @@ function getReply(text) {
 }
 
 function appendMsg(role, text) {
-  const window = document.getElementById('chatWindow');
+  const chatWin = document.getElementById('chatWindow');
   const msg = document.createElement('div');
   msg.className = `msg ${role}`;
   const label = role === 'user' ? 'You' : 'Justin';
   msg.innerHTML = `<div class="msg-label">${label}</div><div class="msg-bubble">${text}</div>`;
-  window.appendChild(msg);
-  window.scrollTop = window.scrollHeight;
+  chatWin.appendChild(msg);
+  chatWin.scrollTop = chatWin.scrollHeight;
 }
 
 function askSuggested(btn) {
